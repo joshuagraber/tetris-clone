@@ -123,27 +123,32 @@ const Tetris = () => {
       onKeyDown={(e) => move(e)} 
       onKeyUp={keyup}>
       <TetrisStyled>      
-      <Stage stage={stage}/>
-      <aside>
-        {gameOver ? (
-          <Display gameOver={gameOver} text="Game Over!" />
-        ) : (
-          <div>
-            <Display text={`${score}`}/>
-            <Display text={`${rows}`}/>
-            <Display text={`${level}`}/>
-          </div>
-        )}
-        
-          {gameInProg ? (
-            ''
+        <Stage stage={stage}/>
+        <aside>
+          {gameOver ? (
+            <Display gameOver={gameOver} text="Game Over!" />
           ) : (
-            <Difficulty difficulty={difficulty} setDifficulty={setDifficulty}/>
+            <div>
+              <Display text={`${score}`}/>
+              <Display text={`${rows}`}/>
+              <Display text={`${level}`}/>
+            </div>
           )}
-        <Sound isPlaying={isPlaying} musicToggle={musicToggle}/>
-        <StartButton startGame={startGame}/>
-      </aside>
-        </TetrisStyled>
+            {gameInProg ? (
+              ''
+            ) : (
+              <Difficulty 
+                difficulty={difficulty} 
+                setDifficulty={setDifficulty}
+                />
+            )}
+          <Sound 
+            isPlaying={isPlaying} 
+            musicToggle={musicToggle}
+          />
+          <StartButton startGame={startGame}/>
+        </aside>
+      </TetrisStyled>
     </WrapperStyled>
   )
 }

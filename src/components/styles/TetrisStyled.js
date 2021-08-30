@@ -21,8 +21,11 @@ export const TetrisStyled = styled.div`
 
   aside {
     width: 100%;
+    height: 100%;
     max-width: 200px;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 0 1.25rem;
   }
 `

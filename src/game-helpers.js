@@ -1,6 +1,3 @@
-export const stageWidth = 12;
-export const stageHeight = 20;
-
 export const difficultyLevels = [
   {value: 0.5, difficulty: 'Beginner'},
   {value: 1, difficulty: 'Normal'},
@@ -8,6 +5,9 @@ export const difficultyLevels = [
   {value: 2, difficulty: 'Expert'},
   {value: 2.5, difficulty: 'Master'}
 ]
+
+export const stageWidth = 12;
+export const stageHeight = 20;
 
 export const createStage = () => 
   Array.from(Array(stageHeight), () => new Array(stageWidth).fill([0, 'clear'])

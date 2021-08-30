@@ -50,7 +50,6 @@ export const usePlayer = () => {
   }, [])
   
   const updatePlayerPos = useCallback(({ x, y, collided }) => {
-    console.log('working');
     setPlayer(prev => ({
       ...prev,
       pos: { x: (prev.pos.x += x), y: (prev.pos.y += y)},

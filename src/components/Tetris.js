@@ -8,6 +8,7 @@ import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
 import Difficulty from './Difficulty';
+import Sound from './Sound';
 
 //Styled Components
 import { WrapperStyled, TetrisStyled } from './styles/TetrisStyled';
@@ -17,6 +18,7 @@ import { usePlayer } from '../hooks/usePlayer';
 import { useStage } from '../hooks/useStage';
 import { useInterval } from '../hooks/useInterval';
 import { useStatus } from '../hooks/useStatus';
+import { useAudio } from '../hooks/useAudio';
 
 
 const Tetris = () => {
@@ -27,11 +29,12 @@ const Tetris = () => {
   const [ player, resetPlayer, updatePlayerPos, playerRotate ] = usePlayer();
   const [ stage, setStage, rowsCleared ] = useStage(player, resetPlayer);
   const [ score, setScore, rows, setRows, level, setLevel, difficulty, setDifficulty ] = useStatus(rowsCleared);
+  const [ isPlaying, musicToggle ] = useAudio(level, rowsCleared, gameInProg);
 
   
 
 
-  console.log('render', difficulty, droptime, level); 
+  console.log('render'); 
 
   const movePlayer = (dir) => {
     if (!checkCollision(player, stage, { x: dir, y: 0 } )) {
@@ -40,7 +43,6 @@ const Tetris = () => {
   }
 
   const startGame = () => {
-    console.log("test")
     // Reset everything
     setStage(createStage());
     // Set droptime
@@ -74,7 +76,6 @@ const Tetris = () => {
       }
       updatePlayerPos( { x: 0, y: 0, collided: true});
     }
-    console.log('running drop', droptime);
   }
 
   const keyup = ({ keyCode }) => {
@@ -133,13 +134,14 @@ const Tetris = () => {
             <Display text={`${level}`}/>
           </div>
         )}
-        <StartButton callback={startGame}/>
+        
           {gameInProg ? (
             ''
           ) : (
             <Difficulty difficulty={difficulty} setDifficulty={setDifficulty}/>
           )}
-        {/* <Sound /> */}
+        <Sound isPlaying={isPlaying} musicToggle={musicToggle}/>
+        <StartButton startGame={startGame}/>
       </aside>
         </TetrisStyled>
     </WrapperStyled>

@@ -20,7 +20,6 @@
 This is a clone of Tetris. It's a game. Maybe you've heard of it?
 
 ### Screenshots
-<!-- Update this file path -->
 ![](./screenshot.png) 
 ![](./screenshot-2.png) 
 
